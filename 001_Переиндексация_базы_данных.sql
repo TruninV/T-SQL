@@ -7,27 +7,27 @@ AS
 BEGIN
 /*
 	***** Название
-		  ReIndexDB - Хранимая процедура для массовой переиндексации базы данных
+	      ReIndexDB - Хранимая процедура для массовой переиндексации базы данных
 		 
 	***** Описание
-		  Процедура перестраивает или реорганизовывает индексы в базе данных в зависимости от степени их фрагментации:
-			• Если степень фрагментации менее 5%, индекс перестраивать или реорганизовывать не нужно;
-			• Если степень фрагментации от 5 до 30%, лучше выполнять реорганизацию индекса;
-			• Если степень фрагментации более 30%, лучше выполнять перестроение индекса.
-		  В качестве параметра принимает идентификатор базы данных, которую необходимо переиндексировать. 
-		  Если не указать параметр, то процедура переиндексирует текущую БД.
+	      Процедура перестраивает или реорганизовывает индексы в базе данных в зависимости от степени их фрагментации:
+		• Если степень фрагментации менее 5%, индекс перестраивать или реорганизовывать не нужно;
+		• Если степень фрагментации от 5 до 30%, лучше выполнять реорганизацию индекса;
+		• Если степень фрагментации более 30%, лучше выполнять перестроение индекса.
+	      В качестве параметра принимает идентификатор базы данных, которую необходимо переиндексировать. 
+	      Если не указать параметр, то процедура переиндексирует текущую БД.
 		 
 	***** Пример запуска
-		  EXEC ReIndexDB;
+	      EXEC ReIndexDB;
 		  
 	***** Разработчик
-		  Виталий Трунин 
-		  Сайт - https://info-comp.ru 
-		  GitHub - https://github.com/TruninV/T-SQL 
+	      Виталий Трунин 
+	      Сайт - https://info-comp.ru 
+	      GitHub - https://github.com/TruninV/T-SQL 
 		  
-	****Материалы для изучения T-SQL	  
-		 https://info-comp.ru/t-sql-book.html
-		 https://info-comp.ru/microsoft-sql-server
+	**** Материалы для изучения T-SQL	  
+	     https://info-comp.ru/t-sql-book.html
+	     https://info-comp.ru/microsoft-sql-server
 	  
 */
     --Запрещаем вывод количества строк
@@ -36,11 +36,11 @@ BEGIN
 
     --Табличная переменная для хранения названий объектов (индексов, таблиц) для обслуживания
     DECLARE @IndexTmpTable TABLE (Id INT IDENTITY(1,1) PRIMARY KEY,
-                                   SchemaName SYSNAME, 
-                                   TableName SYSNAME, 
-                                   IndexName SYSNAME, 
-                                   AvgFrag FLOAT);
-	--Вспомогательные переменные
+                                  SchemaName SYSNAME, 
+                                  TableName SYSNAME, 
+                                  IndexName SYSNAME, 
+                                  AvgFrag FLOAT);
+    --Вспомогательные переменные
     DECLARE @RowNumber INT = 1, @CntRows INT, @CntReorganize INT = 0, @CntRebuild INT = 0;
     DECLARE @SchemaName SYSNAME, @TableName SYSNAME, @IndexName SYSNAME, @AvgFrag FLOAT;
     DECLARE @Command VARCHAR(8000);
@@ -55,12 +55,12 @@ BEGIN
                      Obj.name AS TableName,
                      Inx.name AS IndexName, 
                      AvgFrag.avg_fragmentation_in_percent AS Fragmentation 
-            FROM sys.dm_db_index_physical_stats (@DbId, NULL, NULL, NULL, NULL) AS AvgFrag
-            LEFT JOIN sys.indexes AS Inx ON AvgFrag.object_id = Inx.object_id AND AvgFrag.index_id = Inx.index_id
-            LEFT JOIN sys.objects AS Obj ON AvgFrag.object_id = Obj.object_id 
-              LEFT JOIN sys.schemas AS Sch ON Obj.schema_id = Sch.schema_id
-              WHERE AvgFrag.index_id > 0 
-                AND AvgFrag.avg_fragmentation_in_percent > 5; --5 - это минимальная степень фрагментации индекса
+        FROM sys.dm_db_index_physical_stats (@DbId, NULL, NULL, NULL, NULL) AS AvgFrag
+        LEFT JOIN sys.indexes AS Inx ON AvgFrag.object_id = Inx.object_id AND AvgFrag.index_id = Inx.index_id
+        LEFT JOIN sys.objects AS Obj ON AvgFrag.object_id = Obj.object_id 
+        LEFT JOIN sys.schemas AS Sch ON Obj.schema_id = Sch.schema_id
+        WHERE AvgFrag.index_id > 0 
+          AND AvgFrag.avg_fragmentation_in_percent > 5; --5 - это минимальная степень фрагментации индекса
 
     --Количество строк для обработки
     SELECT @CntRows = COUNT(*)
@@ -80,7 +80,7 @@ BEGIN
             --Если степень фрагментации менее 30%, выполняем реорганизацию индекса
             IF @AvgFrag < 30
                 BEGIN
-					--Формируем строку инструкции и выполняем ее
+		   --Формируем строку инструкции и выполняем ее
                     SELECT @Command = 'ALTER INDEX [' + @IndexName + '] ON ' + '[' + @SchemaName + ']' 
                                           + '.[' + @TableName + '] REORGANIZE';
                     EXEC (@Command);
@@ -102,7 +102,7 @@ BEGIN
                         
             --Переходим к следующему индексу
             SET @RowNumber = @RowNumber + 1;
-		END
+	END
                 
     --Итог
     PRINT 'Всего обработано индексов: ' + CAST(@CntRows AS VARCHAR(10)) 
