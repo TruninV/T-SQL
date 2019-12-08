@@ -21,9 +21,9 @@ BEGIN
 		  EXEC ReIndexDB;
 		  
 	***** Разработчик
-		  Виталий Трунин
-		  Сайт - https://info-comp.ru
-		  GitHub - https://github.com/TruninV/T-SQL
+		  Виталий Трунин 
+		  Сайт - https://info-comp.ru 
+		  GitHub - https://github.com/TruninV/T-SQL 
 		  
 	****Материалы для изучения T-SQL	  
 		 https://info-comp.ru/t-sql-book.html
