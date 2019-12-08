@@ -12,27 +12,27 @@ AS
 BEGIN
 /*
 	***** Название
-		  Dynamic_PIVOT - Хранимая процедура для формирования динамического запроса PIVOT
+	      Dynamic_PIVOT - Хранимая процедура для формирования динамического запроса PIVOT
 		 
 	***** Описание
-		  Хранимая процедура динамически формирует запрос PIVOT. 
-		  Таким образом, вручную указывать ничего не нужно, достаточно указать таблицу и названия столбцов в параметрах при вызове процедуры.
+	      Хранимая процедура динамически формирует запрос PIVOT. 
+	      Таким образом, вручную указывать ничего не нужно, достаточно указать таблицу и названия столбцов в параметрах при вызове процедуры.
 
 	***** Пример запуска
-		  EXEC Dynamic_PIVOT @TableSRC = 'TestTable',
-							 @ColumnName = 'YearSales',
-							 @Field = 'Summa',
-							 @FieldRows = 'CategoryName',
-							 @FunctionType = 'SUM';
+	      EXEC Dynamic_PIVOT @TableSRC = 'TestTable',
+				 @ColumnName = 'YearSales',
+				 @Field = 'Summa',
+				 @FieldRows = 'CategoryName',
+				 @FunctionType = 'SUM';
 				  
 	***** Разработчик
-		  Виталий Трунин
-		  Сайт - https://info-comp.ru
-		  GitHub - https://github.com/TruninV/T-SQL
+	      Виталий Трунин
+	      Сайт - https://info-comp.ru
+	      GitHub - https://github.com/TruninV/T-SQL
 		  
-	*****Материалы для изучения T-SQL
-		 https://info-comp.ru/t-sql-book.html
-		 https://info-comp.ru/microsoft-sql-server
+	***** Материалы для изучения T-SQL
+	      https://info-comp.ru/t-sql-book.html
+	      https://info-comp.ru/microsoft-sql-server
 	  
 */
     --Отключаем вывод количества строк
