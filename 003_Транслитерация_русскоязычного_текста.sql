@@ -27,14 +27,14 @@ BEGIN
 */
 	--Объявление вспомогательных переменных
 	DECLARE @ResultText VARCHAR(8000) = '',
-			@Rus VARCHAR(100) = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',   --Русские буквы
-			@Lat1 VARCHAR(100) = 'abvgdejzzijklmnoprstufkccss"y''ejj', --Транслитерация
-			@Lat2 VARCHAR(100) = '      oh  j           h hhh   hua',  --Дополнительный символ для транслитерации
-			@Lat3 VARCHAR(100) = '                          h      ';  --Дополнительный символ для транслитерации
+		@Rus VARCHAR(100) = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',   --Русские буквы
+		@Lat1 VARCHAR(100) = 'abvgdejzzijklmnoprstufkccss"y''ejj', --Транслитерация
+		@Lat2 VARCHAR(100) = '      oh  j           h hhh   hua',  --Дополнительный символ для транслитерации
+		@Lat3 VARCHAR(100) = '                          h      ';  --Дополнительный символ для транслитерации
 
 	DECLARE @Сounter INT, --Счетчик
-			@Position INT, --Позиция
-			@Char VARCHAR(2); --Символ
+		@Position INT, --Позиция
+		@Char VARCHAR(2); --Символ
 	
 	SET @Сounter = 1;
 	
@@ -42,7 +42,7 @@ BEGIN
 	WHILE @Сounter <= LEN(@SrcText)
 	BEGIN
 		SELECT @Char = SUBSTRING(@SrcText, @Сounter, 1), --Узнаем символ
-			   @Position = CHARINDEX(LOWER(@Char), @Rus); --Узнаем позицию
+		       @Position = CHARINDEX(LOWER(@Char), @Rus); --Узнаем позицию
 		
 		--Формируем результирующую строку
 		IF @Position > 0
