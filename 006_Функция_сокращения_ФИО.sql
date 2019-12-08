@@ -1,37 +1,37 @@
---Функция сокращения ФИО
+--Р¤СѓРЅРєС†РёСЏ СЃРѕРєСЂР°С‰РµРЅРёСЏ Р¤РРћ
 CREATE FUNCTION ShortFIO
 (
-	@SurName VARCHAR(100),   --Фамилия
-	@FirstName VARCHAR(100), --Имя
-	@Patronymic VARCHAR(100) --Отчество
+	@SurName VARCHAR(100),   --Р¤Р°РјРёР»РёСЏ
+	@FirstName VARCHAR(100), --РРјСЏ
+	@Patronymic VARCHAR(100) --РћС‚С‡РµСЃС‚РІРѕ
 )
 RETURNS VARCHAR(300)
 AS
 BEGIN
 /*
-	***** Описание
-		  Функция сокращает Фамилию Имя Отчество, например, Иванов Иван Иванович => Иванов И.И.
-		  Каждая часть ФИО должна передаваться отдельно.
-		  Функция сокращает ФИО только если есть все данные.
+	***** РћРїРёСЃР°РЅРёРµ
+	      Р¤СѓРЅРєС†РёСЏ СЃРѕРєСЂР°С‰Р°РµС‚ Р¤Р°РјРёР»РёСЋ РРјСЏ РћС‚С‡РµСЃС‚РІРѕ, РЅР°РїСЂРёРјРµСЂ, РРІР°РЅРѕРІ РРІР°РЅ РРІР°РЅРѕРІРёС‡ => РРІР°РЅРѕРІ Р.Р.
+	      РљР°Р¶РґР°СЏ С‡Р°СЃС‚СЊ Р¤РРћ РґРѕР»Р¶РЅР° РїРµСЂРµРґР°РІР°С‚СЊСЃСЏ РѕС‚РґРµР»СЊРЅРѕ.
+              Р¤СѓРЅРєС†РёСЏ СЃРѕРєСЂР°С‰Р°РµС‚ Р¤РРћ С‚РѕР»СЊРєРѕ РµСЃР»Рё РµСЃС‚СЊ РІСЃРµ РґР°РЅРЅС‹Рµ.
 
-	***** Пример запуска
-		  SELECT dbo.ShortFIO('Иванов', 'Иван', 'Иванович') AS ShortFIO;
+	***** РџСЂРёРјРµСЂ Р·Р°РїСѓСЃРєР°
+	      SELECT dbo.ShortFIO('РРІР°РЅРѕРІ', 'РРІР°РЅ', 'РРІР°РЅРѕРІРёС‡') AS ShortFIO;
 				  
-	***** Сайт - https://info-comp.ru
-		  GitHub - 
+	***** РЎР°Р№С‚ - https://info-comp.ru
+	      GitHub - https://github.com/TruninV/T-SQL
 		  
-	*****Материалы для изучения T-SQL
-		 https://info-comp.ru/t-sql-book.html
-		 https://info-comp.ru/microsoft-sql-server
+	***** РњР°С‚РµСЂРёР°Р»С‹ РґР»СЏ РёР·СѓС‡РµРЅРёСЏ T-SQL
+	      https://info-comp.ru/t-sql-book.html
+	      https://info-comp.ru/microsoft-sql-server
 */
 	DECLARE @FIO VARCHAR(300); 
-	--Сокращаем ФИО только если есть все данные
+	--РЎРѕРєСЂР°С‰Р°РµРј Р¤РРћ С‚РѕР»СЊРєРѕ РµСЃР»Рё РµСЃС‚СЊ РІСЃРµ РґР°РЅРЅС‹Рµ
 	IF @SurName IS NOT NULL AND @FirstName IS NOT NULL AND @Patronymic IS NOT NULL
 		SET @FIO = UPPER(SUBSTRING(LTRIM(RTRIM(@SurName)), 1, 1)) + LOWER(SUBSTRING(LTRIM(RTRIM(@SurName)), 2, LEN(LTRIM(RTRIM(@SurName))))) +
-				   ' ' + 
-				   UPPER(SUBSTRING(LTRIM(RTRIM(@FirstName)), 1, 1)) + 
-				   '. ' + 
-				   UPPER(SUBSTRING(LTRIM(RTRIM(@Patronymic)), 1, 1)) + 
+			   ' ' + 
+			   UPPER(SUBSTRING(LTRIM(RTRIM(@FirstName)), 1, 1)) + 
+			   '. ' + 
+			   UPPER(SUBSTRING(LTRIM(RTRIM(@Patronymic)), 1, 1)) + 
 				   '.';
 	RETURN @FIO;
 END
