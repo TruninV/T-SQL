@@ -1,28 +1,28 @@
---Ñóììà ñ ÍÄÑ
+--Ð¡ÑƒÐ¼Ð¼Ð° Ñ ÐÐ”Ð¡
 CREATE FUNCTION SummaWithNDS
 (
-	@Summa FLOAT, --Ñóììà
-	@Nds INT 	  --Çíà÷åíèå ÍÄÑ
+	@Summa FLOAT, --Ð¡ÑƒÐ¼Ð¼Ð°
+	@Nds INT 	  --Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÐÐ”Ð¡
 )
 RETURNS FLOAT
 AS
 BEGIN	
 /*
-	***** Îïèñàíèå
-		  Ôóíêöèÿ âîçâðàùàåò ñóììó ñ ó÷åòîì ÍÄÑ
+	***** ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ
+		  Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑÑƒÐ¼Ð¼Ñƒ Ñ ÑƒÑ‡ÐµÑ‚Ð¾Ð¼ ÐÐ”Ð¡
 
-	***** Ïðèìåð çàïóñêà
+	***** ÐŸÑ€Ð¸Ð¼ÐµÑ€ Ð·Ð°Ð¿ÑƒÑÐºÐ°
 		  SELECT dbo.SummaWithNDS(100, 20) AS SummaWithNDS;
 				  
-	***** Ñàéò - https://info-comp.ru
-		  GitHub - 
+	***** Ð¡Ð°Ð¹Ñ‚ - https://info-comp.ru
+	      GitHub - https://github.com/TruninV/T-SQL
 		  
-	*****Ìàòåðèàëû äëÿ èçó÷åíèÿ T-SQL
+	*****ÐœÐ°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ñ‹ Ð´Ð»Ñ Ð¸Ð·ÑƒÑ‡ÐµÐ½Ð¸Ñ T-SQL
 		 https://info-comp.ru/t-sql-book.html
 		 https://info-comp.ru/microsoft-sql-server
 */	
 	DECLARE @SummaWithNDS FLOAT;
-	--Åñëè çíà÷åíèå ÍÄÑ îòðèöàòåëüíî, òî âîçâðàùàåòñÿ ïðîñòî ñóììà
+	--Ð•ÑÐ»Ð¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÐÐ”Ð¡ Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾, Ñ‚Ð¾ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ÑÑ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÑÑƒÐ¼Ð¼Ð°
 	IF @Nds > 0
 		SET @SummaWithNDS = @Summa * (100 + @Nds) / 100;
 	ELSE
