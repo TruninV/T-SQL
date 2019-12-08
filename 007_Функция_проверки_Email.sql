@@ -1,32 +1,32 @@
---Проверка Email адреса
+--РџСЂРѕРІРµСЂРєР° Email Р°РґСЂРµСЃР°
 CREATE FUNCTION CheckEmail
 (
-	@Email VARCHAR(100) --Адрес электронной почты
+	@Email VARCHAR(100) --РђРґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹
 )
 RETURNS BIT
 AS
 BEGIN
 /*
-	***** Описание
-		  Проверка адреса электронной почты (Email) на корректность.
-		  Функция возвращает:
-		    1 – Email корректен
-		    0 – Email некорректен
-		    NULL – если значение Email равно NULL
+	***** РћРїРёСЃР°РЅРёРµ
+	      РџСЂРѕРІРµСЂРєР° Р°РґСЂРµСЃР° СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ (Email) РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ.
+	      Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚:
+		  1 вЂ“ Email РєРѕСЂСЂРµРєС‚РµРЅ
+		  0 вЂ“ Email РЅРµРєРѕСЂСЂРµРєС‚РµРЅ
+		  NULL вЂ“ РµСЃР»Рё Р·РЅР°С‡РµРЅРёРµ Email СЂР°РІРЅРѕ NULL
 
-	***** Пример запуска
-		  SELECT dbo.CheckEmail('123email456@gmail.com') AS CheckEmail;
+	***** РџСЂРёРјРµСЂ Р·Р°РїСѓСЃРєР°
+	      SELECT dbo.CheckEmail('123email456@gmail.com') AS CheckEmail;
 		  
-	***** Сайт - https://info-comp.ru
-		  GitHub - 
+	***** РЎР°Р№С‚ - https://info-comp.ru
+	      GitHub - https://github.com/TruninV/T-SQL
 		  
-	*****Материалы для изучения T-SQL
-		 https://info-comp.ru/t-sql-book.html
-		 https://info-comp.ru/microsoft-sql-server
+	***** РњР°С‚РµСЂРёР°Р»С‹ РґР»СЏ РёР·СѓС‡РµРЅРёСЏ T-SQL
+	      https://info-comp.ru/t-sql-book.html
+	      https://info-comp.ru/microsoft-sql-server
 */
 	DECLARE @Result BIT;
 	
-	--Начинаем проверку только если есть данные
+	--РќР°С‡РёРЅР°РµРј РїСЂРѕРІРµСЂРєСѓ С‚РѕР»СЊРєРѕ РµСЃР»Рё РµСЃС‚СЊ РґР°РЅРЅС‹Рµ
 	IF @Email IS NOT NULL
 	BEGIN	
 		IF @Email LIKE '%[A-Z0-9][@][A-Z0-9]%[.][A-Z0-9]%' AND @Email NOT LIKE '%["<>'']%'
