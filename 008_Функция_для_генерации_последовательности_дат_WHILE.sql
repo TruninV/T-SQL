@@ -8,24 +8,24 @@ AS
 BEGIN
 	/*
 		***** Описание
-			  Генерация последовательности дат в заданном диапазоне.
-			  Способ подразумевает использование цикла.
+		      Генерация последовательности дат в заданном диапазоне.
+		      Способ подразумевает использование цикла.
 		
 		***** Функция возвращает таблицу с датами в диапазоне, который задан в параметрах.
-			  Даты формируются начиная @DateStart и заканчивая @DateEnd.
+		      Даты формируются начиная @DateStart и заканчивая @DateEnd.
 			  
 		***** Пример запуска
-			  SELECT * FROM GeneratingDates('01.01.2020','31.12.2020');
+		      SELECT * FROM GeneratingDates('01.01.2020','31.12.2020');
 			  
 		***** Сайт - https://info-comp.ru
-			  GitHub - https://github.com/TruninV/T-SQL
+		      GitHub - https://github.com/TruninV/T-SQL
 			  
 		***** Материалы для изучения T-SQL
-			  https://self-learning.ru/databases
-			  https://info-comp.ru/microsoft-sql-server
+		      https://self-learning.ru/databases
+		      https://info-comp.ru/microsoft-sql-server
 			
 		***** Курсы по T-SQL 
-			  https://self-learning.ru/courses/t-sql
+		      https://self-learning.ru/courses/t-sql
 	*/
 	
 	--Запускаем цикл. Он будет завершен, когда дойдем до даты окончания.
