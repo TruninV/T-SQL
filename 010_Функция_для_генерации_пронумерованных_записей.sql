@@ -8,22 +8,22 @@ AS
 RETURN(
 		/*
 		***** Описание
-			  Формирование строк с последовательностью чисел.
+		      Формирование строк с последовательностью чисел.
 		
 		***** Функция возвращает таблицу, которая содержит @quantity_rows пронумерованных записей.
 			  
 		***** Пример запуска
-			  SELECT * FROM generating_rows(100000);
+		      SELECT * FROM generating_rows(100000);
 			  
 		***** Сайт - https://info-comp.ru
-			  GitHub - https://github.com/TruninV/T-SQL
+		      GitHub - https://github.com/TruninV/T-SQL
 			  
 		***** Материалы для изучения T-SQL
-			  https://self-learning.ru/databases
-			  https://info-comp.ru/microsoft-sql-server
+		      https://self-learning.ru/databases
+		      https://info-comp.ru/microsoft-sql-server
 			
 		***** Курсы по T-SQL 
-			  https://self-learning.ru/courses/t-sql
+		      https://self-learning.ru/courses/t-sql
 	*/
 	WITH SrcRows AS ( 
 		SELECT NumberRow
