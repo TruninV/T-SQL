@@ -10,7 +10,7 @@ BEGIN
 		      EXEC bubble_sort;
 			  
 		***** Сайт - https://info-comp.ru
-		       GitHub - https://github.com/TruninV/T-SQL
+		      GitHub - https://github.com/TruninV/T-SQL
 			  
 		***** Материалы для изучения T-SQL
 		      https://self-learning.ru/databases
@@ -23,22 +23,22 @@ BEGIN
 	--Табличная переменная для хранения массива данных с числами
 	--Индекс массива начинается с 0
 	DECLARE @data_array TABLE (array_index INT NOT NULL IDENTITY(0, 1) PRIMARY KEY,
-							   value INT NOT NULL);
+				   value INT NOT NULL);
 	--Добавление данных в табличную переменную
 	INSERT INTO @data_array
-		VALUES (5),(2),(1),(3),(9),(0),(4),(6),(8),(7);
+	    VALUES (5),(2),(1),(3),(9),(0),(4),(6),(8),(7);
 		
 	--Вывод данных до сортировки
 	SELECT array_index, value
 	FROM @data_array;
 
 	DECLARE @current_element INT, --Текущий элемент в массиве
-			@amount_elements INT, --Количество элементов в массиве
-			@continue_sort BIT;   --Признак для продолжения сортировки
+		@amount_elements INT, --Количество элементов в массиве
+		@continue_sort BIT;   --Признак для продолжения сортировки
 	
 	--Переменные для хранения значений массива
 	DECLARE @value1 INT, 
-			@value2 INT;
+		@value2 INT;
 
 	--Определяем количество элементов в массиве, учитывая, что он начинается с 0
 	SELECT @amount_elements = COUNT(*) - 1
@@ -65,7 +65,7 @@ BEGIN
 		BEGIN
 
 			SELECT @value1 = 0,
-				   @value2 = 0;
+			       @value2 = 0;
 			
 			--Получаем первые значения в массиве
 			SELECT @value1 = value 
