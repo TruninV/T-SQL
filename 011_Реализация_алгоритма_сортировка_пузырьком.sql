@@ -4,20 +4,20 @@ AS
 BEGIN
 	/*
 		***** Описание
-			  Пример реализации на T-SQL алгоритма «Сортировка пузырьком».
+		      Пример реализации на T-SQL алгоритма «Сортировка пузырьком».
 		
 		***** Пример запуска
-			  EXEC bubble_sort;
+		      EXEC bubble_sort;
 			  
 		***** Сайт - https://info-comp.ru
-			  GitHub - https://github.com/TruninV/T-SQL
+		       GitHub - https://github.com/TruninV/T-SQL
 			  
 		***** Материалы для изучения T-SQL
-			  https://self-learning.ru/databases
-			  https://info-comp.ru/microsoft-sql-server
+		      https://self-learning.ru/databases
+		      https://info-comp.ru/microsoft-sql-server
 			
 		***** Курсы по T-SQL
-			  https://self-learning.ru/courses/t-sql
+		      https://self-learning.ru/courses/t-sql
 	*/
 	
 	--Табличная переменная для хранения массива данных с числами
